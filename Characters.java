@@ -75,4 +75,8 @@ public abstract class Characters {
         }
         System.out.println(); // Print a newline after the text
     }
+
+    public void heal(int healAmount) {
+        this.health += healAmount;
+    }
 }

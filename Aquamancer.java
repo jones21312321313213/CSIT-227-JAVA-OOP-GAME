@@ -42,7 +42,6 @@ public class Aquamancer extends Characters {
         displayWithDelay("The spell strikes the enemies, dealing " + damage + " magic damage.", 150);
         displayWithDelay("In addition, " + super.getName() + " grants a protective shield of " + shieldAmount + " points to an ally!", 150);
         displayWithDelay("You now have " + res + " mana left.", 150);
-        opponent.takeDamage(damage);
     }
 
     @Override
@@ -54,13 +53,9 @@ public class Aquamancer extends Characters {
             return;
         }
         res -= 8;
-        int healAmount = getRandomBetween(3, 6); 
     
         // Display the AoE heal message
         displayWithDelay(super.getName() + "channels their power and releases a wave of healing energy!", 150);
-        displayWithDelay("All allies are healed for " + healAmount + " health points!", 150);
-        displayWithDelay("You now have " + res + " mana/energy left.", 150);
-        opponent.takeDamage(defence);
     }
 
     @Override

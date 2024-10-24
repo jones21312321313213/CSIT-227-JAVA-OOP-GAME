@@ -28,6 +28,7 @@ public class Player extends Choices {
         return this.chosenCharacters; // Return the array of chosen Characters
     }
 
+
     // Switch character if valid
     public boolean switchCharacter(int index) {
         if (index >= 0 && index < characters.length && characters[index].isAlive()) {
@@ -73,6 +74,15 @@ public class Player extends Choices {
             }
         }
     }
+
+    public void healAllCharacters(int healAmount) {
+        for (Characters character : characters) {
+            if (character.isAlive()) {
+                character.heal(healAmount);
+            }
+        }
+    }
+
     
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -241,6 +251,12 @@ public class Player extends Choices {
             case 3: // Ultimate attack
                     current.ult(res[i], opponent.getCurrentCharacter());
                     if(res[i] >= 8){
+                        if (current.getName().equals("Aquamancer")) { // naa diri ang heal sa aquamancer gi implement
+                            int healAmount = current.getRandomBetween(20, 30);
+                            healAllCharacters(healAmount);
+                            displayWithDelay("All allies are healed for " + healAmount + " health points!", 150);
+                            displayWithDelay("You now have " + (res[i]-8) + " mana/energy left.", 150);
+                        }
                         res[i] -=8; 
                     }
                 break;
@@ -264,4 +280,5 @@ public class Player extends Choices {
         }
         System.out.println();
     }
+
 }
